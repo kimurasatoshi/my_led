@@ -7,7 +7,7 @@
 #include <linux/timer.h>
 #include <asm/delay.h>
 #include <linux/delay.h>
-MODULE_AUTHOR("Takashi Koseki");
+MODULE_AUTHOR("Kimura Satoshi");
 MODULE_DESCRIPTION("driver for LED control");
 MODULE_LICENSE("GPL");
 MODULE_VERSION("0.1");
@@ -24,30 +24,34 @@ static ssize_t led_write(struct file* filp, const char* buf, size_t count, loff_
   if(copy_from_user(&c,buf,sizeof(char)))
     return -EFAULT;
 
-    if(c == '0'){
+  if(c == '0'){
         gpio_base[10] = 1 << 25;
 	}
-    else if(c == '1'){
-        gpio_base[7] = 1 << 25;
+	else if(c == '1'){
+	   for(i=0; i<1*2; i++){
+		   gpio_base[7] = 1 << 25;
+		   msleep(300);
+		   gpio_base[10] = 1 << 25;
+		   msleep(300);
+	   }
 	}
-    //回数点滅
-    else if(c == '2'){
-	for(i=0; i < 2; i++){
-		gpio_base[7] = 1 << 25;
-		msleep(500);
-		gpio_base[10] = 1 << 25;
-		msleep(500);
+	else if(c == '2'){
+		for(i=0; i<2*2; i++){
+			gpio_base[7] = 1 << 25;
+			msleep(300);
+			gpio_base[10] = 1 << 25;
+			msleep(300);
+		}
 	}
-    }
-    else if(c == '3'){
-        for(i=0; i < 3; i++){
-                gpio_base[7] = 1 << 25;
-                msleep(500);
-                gpio_base[10] = 1 << 25;
-                msleep(500);
-        }
+	else if(c == '3'){
+		for(i=0; i<3*2; i++){
+			gpio_base[7] = 1 << 25;
+			msleep(300);
+			gpio_base[10] = 1 << 25;
+			msleep(300);
+		}
+	}
 
-    }
     return 1;
 }
 
