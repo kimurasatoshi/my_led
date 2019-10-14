@@ -1,7 +1,8 @@
 /*
  * myled.c
  *
- * Copyright (C) 2019 TodaSayaka <s17c1097lb@s.chibakoudai.jp>
+ * Copyright (C) 2019 Ryuichi Ueda <ryuichiueda@gmail.com>
+ * Copyright (C) 2019 Satoshi Kimura <s17c1043hf@s.chibakoudai.jp>
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
